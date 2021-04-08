@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+        integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-2 bg-dark">
+
+            </div>
+
+            <div class="col-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 text-start">
+                            <h2 class="font-weight-light mt-3" id="formHeading"></h2>
+                        </div>
+                        <div class="col-6 text-end">
+                            <select class="form-select form-select-lg mb-3  mt-3" aria-label=".form-select-lg example"
+                                onchange="editForm()" id="editForm">
+                                <option value="" selected>Select Option</option>
+                                <option value="1">Add</option>
+                                <option value="2">Edit</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-4">
+
+                        <div class="col-md-5 custom-border border-right">
+
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-6">
+
+                                        <div class="form-group">
+                                            <label for="accountIDLabel"><small>Account ID</small> </label>
+                                            <select class="form-control text-primary" id="formControlAccountID"
+                                                onchange="valueChanged();accountIdSecurityTypeValidation(event)">
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="Identifier">Identifier</label>
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+
+                                            <input type="text" class="form-control w-100" placeholder="Identifier"
+                                                id="identifier" onchange="valueChanged();"
+                                                onkeyup="IdentifierValidation();">
+
+                                        </div>
+                                        <div class="col-5  pr-0"> <button type="submit"
+                                                class="btn btn-primary mb-2 w-100 disabled" id="retrieveBtn"
+                                                disabled>Retrieve
+                                                Information</button>
+                                        </div>
+                                        <div class="col-3 pl-1 pr-0"><i
+                                                class="far fa-question-circle fa-2x text-primary pt-1"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="securityInfo"></label>
+
+                                            <button type="submit" class="btn btn-outline-primary w-100">Clear Security
+                                                Info</button>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <hr />
+                            <div class=" pt-3">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="sharesQuantity">Shares Quantity</label>
+                                            <input type="text" class="form-control" placeholder="Shares Quantity"
+                                                id="sharesQuantity" onchange="valueChanged()"
+                                                onkeyup="numValidation(event)">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="marketPrice">Market price ($)</label>
+                                            <input type="text" class="form-control" placeholder="Market price"
+                                                id="marketPrice" onchange="valueChanged()"
+                                                onkeyup="marketPriceorTotalValue()">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <p class="text-center mb-0">OR</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="totalMarketValue">Total market value ($)</label>
+                                            <input type="text" class="form-control" id="totalMarketValue"
+                                                placeholder="Principal amount" onchange="valueChanged()"
+                                                onkeyup="marketPriceorTotalValue()">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <div class="custom-control custom-checkbox checkbox-lg pt-4">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-2">
+                                            <label class="custom-control-label" for="checkbox-2">Don't price <i
+                                                    class="far fa-question-circle fa-lg text-primary"></i></label>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-7">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="securityType">Security type</label>
+                                            <select class="form-control" id="securityType"
+                                                onchange="valueChanged(); accountIdSecurityTypeValidation(event)">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for="securityName">Security name</label>
+                                            <input type="text" class="form-control w-100" placeholder="Security name"
+                                                id="securityName" onchange="valueChanged()"
+                                                onkeyup="securityNameValidation()">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-4 pr-0">
+                                        <div class="form-group">
+                                            <label for="CUSIP">CUSIP</label>
+                                            <input type="text" class="form-control w-100" placeholder="CUSIP" id="cusip"
+                                                onchange="valueChanged();" onKeyUp="CUSIPOrTicker()">
+                                        </div>
+                                    </div>
+                                    <div class="col-1 pt-4-5">OR</div>
+                                    <div class="col-4 pl-0">
+                                        <div class="form-group">
+                                            <label for="Ticker">Ticker</label>
+                                            <input type="text" class="form-control w-100" placeholder="Ticker"
+                                                id="ticker" onchange="valueChanged()" onKeyUp="CUSIPOrTicker()">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <hr class="my-hr" />
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="pt-3">
+
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="form-group mb-0">
+                                                    <label for="PurchaseDate">Purchase Date</label>
+                                                    <input placeholder="MM/ DD/ YYYY" type="text" id="PurchaseDate"
+                                                        class="form-control datepicker"
+                                                        onchange="valueChanged();dateOrTerm(event);">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="offset-10">
+                                                OR
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="shortOrLongterm">Short or Long term?</label>
+                                                    <br />
+                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                        <button class="btn btn-outline-primary" id="shortTerm">
+                                                            <!-- <input type="radio" name="options" id="option1" checked> -->
+                                                            Short
+                                                            term
+                                                        </button>
+                                                        <button class="btn btn-outline-primary" id="longTerm">
+                                                            <!-- <input type="radio" name="options" id="option2"> -->
+                                                            Long term
+                                                        </button>
+                                                    </div>
+
+                                                    <i class="far fa-question-circle text-primary fa-lg"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-2 pt-5 pb-4">
+                                    <div class="border h-100 border-left-0">
+                                        <p class="text-muted orSelect">
+                                            At
+                                            least one is required</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div class="form-group mb-0">
+                                                <label for="unitCost">Unit Cost basis ($)</label>
+                                                <input type="text" class="form-control w-100"
+                                                    placeholder="Unit Cost basis" id="unitCostBasis"
+                                                    onchange="valueChanged();" onKeyUp="totalOrUnit();">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="offset-10">
+                                            OR
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div class="form-group mt-0">
+                                                <label for="totalCost">Total cost basis ($)</label>
+                                                <input type="text" class="form-control w-100"
+                                                    placeholder="Total cost basis" id="totalCostBasis"
+                                                    onchange="valueChanged();totalOrUnit();" onKeyUp="totalOrUnit();">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class=" col-2 pt-5 pb-4">
+                                    <div class="border h-100 border-left-0">
+                                        <p class="text-muted orSelect">
+                                            At
+                                            least one is required</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row mt-2 mb-2">
+                    <div class="col-6">
+                        <div class="text-start">
+                            <button type="button" class="btn btn-primary disabled" id="formSaveBtn"
+                                disabled>Save</button>
+                            <button type="button" class="btn btn-primary disabled" id="formSaveAddAddressBtn"
+                                disabled>Save
+                                &
+                                add another</button>
+                            <button type="button" class="btn btn-outline-primary" id="cancel">Cancel</button>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="text-end">
+                            <button type="button" class="btn btn-outline-danger d-none" id="delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    // let accData = [101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+    // let securityType = ["low", "medium", "high", "ultra", "Z level"]
+
+
+    let totalOrUnit = () => {
+        let totalCostBasis = document.getElementById('totalCostBasis')
+        let unitCostBasis = document.getElementById('unitCostBasis')
+        if ((totalCostBasis.value == "") && (unitCostBasis.value == "")) {
+            totalCostBasis.style.border = "1px solid red"
+            unitCostBasis.style.border = "1px solid red"
+        } else {
+            totalCostBasis.style.border = "1px solid #ced4da"
+            unitCostBasis.style.border = "1px solid #ced4da"
+
+            let checkthis
+            if (totalCostBasis.value) {
+                checkthis = totalCostBasis
+            } else {
+                checkthis = unitCostBasis
+            }
+
+
+            if (Number.isInteger(parseInt(checkthis.value)) && parseInt(checkthis.value) > 0) {
+                checkthis.style.border = "1px solid #ced4da"
+            } else {
+                checkthis.style.border = "1px solid red"
+            }
+
+        }
+    }
+
+
+    let CUSIPOrTicker = () => {
+        let CUSIP = document.getElementById('cusip')
+        let Ticker = document.getElementById('ticker')
+        if ((CUSIP.value == "") && (Ticker.value == "")) {
+            CUSIP.style.border = "1px solid red"
+            Ticker.style.border = "1px solid red"
+        } else {
+            CUSIP.style.border = "1px solid #ced4da"
+            Ticker.style.border = "1px solid #ced4da"
+
+        }
+    }
+
+
+    let marketPriceorTotalValue = () => {
+        let totalMarketValue = document.getElementById('totalMarketValue')
+        let marketPrice = document.getElementById('marketPrice')
+
+        if ((totalMarketValue.value == "") && (marketPrice.value == "")) {
+            totalMarketValue.style.border = "1px solid red"
+            marketPrice.style.border = "1px solid red"
+        } else {
+            totalMarketValue.style.border = "1px solid #ced4da"
+            marketPrice.style.border = "1px solid #ced4da"
+
+            let checkthis
+            if (totalMarketValue.value) {
+                checkthis = totalMarketValue
+            } else {
+                checkthis = marketPrice
+            }
+
+
+            if (Number.isInteger(parseInt(checkthis.value)) && parseInt(checkthis.value) > 0) {
+                checkthis.style.border = "1px solid #ced4da"
+            } else {
+                checkthis.style.border = "1px solid red"
+            }
+
+        }
+    }
+
+    let accountIdSecurityTypeValidation = (e) => {
+        let dropMenu = e.target;
+        if (dropMenu.value == '') {
+            dropMenu.style.border = "1px solid red"
+        } else {
+            dropMenu.style.border = "1px solid #ced4da"
+        }
+    }
+
+    let IdentifierValidation = () => {
+        let identifier = document.getElementById('identifier')
+        let retrieveBtn = document.getElementById('retrieveBtn')
+
+        if (identifier.value == "") {
+            identifier.style.border = "1px solid red"
+            retrieveBtn.classList.add("disabled");
+            retrieveBtn.disabled = true;
+        } else {
+            identifier.style.border = "1px solid #ced4da"
+            retrieveBtn.classList.remove("disabled");
+            retrieveBtn.disabled = false;
+        }
+    }
+
+    let securityNameValidation = () => {
+        let securityName = document.getElementById('securityName')
+
+        if (securityName.value == "") {
+            securityName.style.border = "1px solid red"
+        } else {
+            securityName.style.border = "1px solid #ced4da"
+        }
+    }
+
+    let dateOrTerm = (e) => {
+        if (e.target.value) {
+            let shortTermBtn = document.getElementById('shortTerm')
+            let longTermBtn = document.getElementById('longTerm')
+
+            shortTermBtn.classList.add("disabled");
+            shortTermBtn.disabled = true;
+
+
+            longTermBtn.classList.add("disabled");
+            longTermBtn.disabled = true;
+        }
+
+    }
+
+    let numValidation = (e) => {
+        let inputField = e.target;
+
+        if (Number.isInteger(parseInt(inputField.value)) && parseInt(inputField.value) > 0) {
+            inputField.style.border = "1px solid #ced4da"
+        } else {
+            inputField.style.border = "1px solid red"
+        }
+    }
+
+
+
+    let data = {
+        "formType": "Add Holding",
+        "account_id": [
+            "A_101",
+            "A_102",
+            "A_103",
+            "A_104",
+            "A_105"
+        ],
+        "security_type": [
+            "S_101",
+            "S_102",
+            "S_103",
+            "S_104",
+            "S_105"
+        ],
+        "identifier": 1011,
+        "security_name": "g4s",
+        "cusip": 122,
+        "ticker": 212121,
+        "share_quantity": 1000,
+        "purchase_date": "04 March 2021",
+        "market_price": 2000,
+        "term": [
+            "short_term",
+            "long_term"
+        ],
+        "total_market_value": 3000,
+        "dont_price": true,
+        "unit_cost_basis": 4000,
+        "total_cost_basis": 5000
+    };
+
+
+
+    let editForm = (e) => {
+        let formValue = document.getElementById('editForm').value
+        if (formValue == 1 || formValue == "") {
+            document.getElementById('formHeading').innerHTML = data.formType
+            document.getElementById('identifier').value = ""
+            document.getElementById('securityName').value = ""
+            document.getElementById('cusip').value = ""
+            document.getElementById('ticker').value = ""
+            document.getElementById('sharesQuantity').value = ""
+            document.getElementById('PurchaseDate').value = ""
+            document.getElementById('marketPrice').value = ""
+            document.getElementById('totalCostBasis').value = ""
+            document.getElementById('unitCostBasis').value = ""
+            document.getElementById('totalMarketValue').value = ""
+            document.getElementById('dontPrice').checked = false
+
+            let formSaveBtn = document.getElementById("formSaveBtn");
+            let formSaveAddAddressBtn = document.getElementById("formSaveAddAddressBtn");
+
+
+            formSaveBtn.classList.add("disabled");
+            formSaveBtn.disabled = true;
+
+
+
+            formSaveAddAddressBtn.classList.add("disabled");
+            formSaveAddAddressBtn.disabled = true;
+
+            let formDeleteBtn = document.getElementById("delete");
+            formDeleteBtn.classList.add("d-none");
+
+
+
+        } else if (formValue == 2) {
+
+
+            document.getElementById('formHeading').innerHTML = 'Edit Form'
+            document.getElementById('identifier').value = data.identifier
+            document.getElementById('securityName').value = data.security_name
+            document.getElementById('cusip').value = data.cusip
+            document.getElementById('ticker').value = data.ticker
+            document.getElementById('sharesQuantity').value = data.share_quantity
+            document.getElementById('PurchaseDate').value = data.purchase_date
+            document.getElementById('marketPrice').value = data.market_price
+            document.getElementById('totalCostBasis').value = data.total_cost_basis
+            document.getElementById('unitCostBasis').value = data.unit_cost_basis
+            document.getElementById('totalMarketValue').value = data.total_market_value
+
+            if (data.dont_price) {
+                document.getElementById('dontPrice').checked = true
+            }
+
+            let formSaveBtn = document.getElementById("formSaveBtn");
+            let formSaveAddAddressBtn = document.getElementById("formSaveAddAddressBtn");
+
+
+            formSaveBtn.classList.remove("disabled");
+            formSaveBtn.disabled = false;
+
+
+
+            formSaveAddAddressBtn.classList.remove("disabled");
+            formSaveAddAddressBtn.disabled = false;
+
+            let formDeleteBtn = document.getElementById("delete");
+            formDeleteBtn.classList.remove("d-none");
+
+
+
+        } else { }
+    }
+
+    let valueChanged = () => {
+
+
+        let identifier = document.getElementById('identifier').value
+        let securityName = document.getElementById('securityName').value
+        let cusip = document.getElementById('cusip').value
+        let ticker = document.getElementById('ticker').value
+        let sharesQuantity = document.getElementById('sharesQuantity').value
+        let PurchaseDate = document.getElementById('PurchaseDate').value
+        let marketPrice = document.getElementById('marketPrice').value
+        let totalCostBasis = document.getElementById('totalCostBasis').value
+        let unitCostBasis = document.getElementById('unitCostBasis').value
+        let totalMarketValue = document.getElementById('totalMarketValue').value
+        let formControlAccountID = document.getElementById('formControlAccountID').value
+        let securityType = document.getElementById('securityType').value
+
+
+        if (
+            identifier == "" ||
+            securityName == "" ||
+            cusip == "" ||
+            ticker == "" ||
+            sharesQuantity == "" ||
+            PurchaseDate == "" ||
+            marketPrice == "" ||
+            totalCostBasis == "" ||
+            unitCostBasis == "" ||
+            totalMarketValue == "" ||
+            formControlAccountID == "" ||
+            securityType == ""
+
+        ) {
+            console.log('some fields are empty');
+            let formSaveBtn = document.getElementById("formSaveBtn");
+            let formSaveAddAddressBtn = document.getElementById("formSaveAddAddressBtn");
+
+
+            formSaveBtn.classList.add("disabled");
+            formSaveBtn.disabled = true;
+
+
+
+            formSaveAddAddressBtn.classList.add("disabled");
+            formSaveAddAddressBtn.disabled = true;
+
+
+
+        } else {
+            console.log('all fields filled');
+            let formSaveBtn = document.getElementById("formSaveBtn");
+            let formSaveAddAddressBtn = document.getElementById("formSaveAddAddressBtn");
+
+
+            formSaveBtn.classList.remove("disabled");
+            formSaveBtn.disabled = false;
+
+
+
+            formSaveAddAddressBtn.classList.remove("disabled");
+            formSaveAddAddressBtn.disabled = false;
+
+        }
+
+    }
+
+
+    let populateSecurityType = () => {
+        let selectField = document.getElementById('securityType')
+        let options = "<option value=''> -Select- </option>"
+        let securityType = data.security_type
+
+        for (let index = 0; index < securityType.length; index++) {
+            options += "<option value= " + securityType[index] + ">" + securityType[index] + "</option>";
+
+        }
+        selectField.innerHTML = options
+    }
+
+    let populateAccountData = () => {
+        let selectField = document.getElementById('formControlAccountID')
+        let options = "<option value=''> -Select- </option>"
+        let accData = data.account_id
+
+        for (let index = 0; index < accData.length; index++) {
+            options += "<option value= " + accData[index] + ">" + accData[index] + "</option>";
+
+        }
+        selectField.innerHTML = options
+
+    }
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        populateSecurityType()
+        populateAccountData()
+        document.getElementById('formHeading').innerHTML = data.formType
+
+        $(function () {
+            $("#PurchaseDate").datepicker();
+        });
+    })
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+.acn {
+    background-color: darkgrey;
+}
+.regbtn{
+    margin-right: 154px;
+    width: 125px;
+    border-radius: 6px;
+}
+.edit {
+    margin-left: 75px;
+}
+.savebtn{
+    margin-right: 250px;
+}
+.cross {
+    padding-left: 450px;
+    font-size: 24px;
+}
+
+.chat {
+    font-size: 20px
+}
+
+.msg {
+    padding-left: 15px;
+}
+
+.send {
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 2px;
+    padding: 17px;
+    height: 66px;
+}
+
+.anne {
+    padding-left: 100px;
+}

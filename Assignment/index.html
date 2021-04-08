@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+   
+    <br>
+    <div class="container ">
+     <div class="form-group">
+      <form class="form-inline">
+        <h1 id="formType"> </h1>
+        <!-- <h1>Add holding</h1> -->
+        <select style="margin-left: 248px; width: 85px; height: 35px;" id="">
+            <option selected>Menu</option>
+            <option value="1">Add</option>
+            <option value="2">Edit</option>
+            
+          </select>
+      </form>
+     </div>
+           
+        <div class="row">
+            <div class="col-md-4 border-right border-gray">
+                <div class="form-group">
+                    <label for="">Account ID</label>
+                    <br>
+                    <div id="account_id" class="col-md-4">
+
+                    </div>
+                    <!-- <select class="acnt">
+                        <option selected>-Select-</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select> -->
+                </div>
+
+                <div class="form-group">
+                    <label for="">Identifier</label><br>
+                    <input type="text" placeholder="Identifier" class="ident">
+                    <button type="button" class="btn btn-md btn-primary info" disabled>Retrieve Information</button>
+                    <i class="far fa-question-circle" style="font-size: 25px; color: blue; padding: 5px;"></i><br><br>
+                    <button type="button" class="btn btn-outline-primary" style="width: 212px;">Clear Security Info</button>
+                </div>
+                <hr>
+            </div>
+
+
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="">Security Type</label>
+                    <br>
+                    <div id="security_type" class="col-md-4">
+
+                    </div>
+                    <!-- <select  class="sec">
+                        <option selected>-Select-</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select> -->
+                </div>
+
+                <div class="form-group">
+                    <label for="">Security Name</label><br>
+                    <input type="text" placeholder="Security Name" style="width:348px; height: 40px;">
+                </div>
+
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="">CUSIP</label>
+                        <label for="" style="margin-left: 163px;">Ticker</label>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <input type="text" placeholder="CUSIP" style="height: 40px;">OR
+                    <input type="text" placeholder="Ticker" style="height: 40px;">
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 border-right border-gray">
+                <div class="form-group">
+                    <label for="">Shares quantity</label><br>
+                    <input type="text" placeholder="Shares quantity" style=" height: 40px;">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Market Price($)</label><br>
+                    <input type="text" placeholder="Market Price" style=" height: 40px;">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Total market value($)</label><label style="margin-left: 44px;">OR</label>
+                    <div class="form-inline">
+                        <input type="text" placeholder="Total market value" style=" height: 40px;">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1" style="margin: 11px;">Don't
+                                Price</label>
+                        </div>
+                        
+                        <i class="far fa-question-circle" style="font-size: 25px; color: blue;"></i><br><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="">Purchase date</label><br>
+                    <input type="text" placeholder="MM/DD/YYYY" style=" height: 40px;">
+                </div>
+                <div class="form-group">
+                    <label for="">Short or Long term?</label><label style="margin-left: 44px;">OR</label><br>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-primary" style=" height: 38px;">Short term</button>
+                        <button type="button" class="btn btn-outline-primary" style=" height: 38px;">Long term</button>
+
+                    </div>
+                    <i class="far fa-question-circle" style="font-size: 25px; color: blue;"></i>
+                </div>
+                <div class="form-group">
+                    <label for="">Unit Cost basis($)</label><br>
+                    <input type="text" placeholder="Unit Cost basis" style=" height: 40px;">
+                </div>
+                <div class="form-group">
+                    <label for="">Total Cost basis($)</label><label style="margin-left: 44px;">OR</label><br>
+                    <input type="text" placeholder="Total Cost basis" style=" height: 40px;">
+                </div>
+            </div>
+        </div>
+        <hr>
+    <button type="button" class="btn  btn-primary" disabled>Save</button>
+    <button type="button" class="btn btn-primary" disabled>Save & add another</button>
+    <button type="button" class="btn btn-outline-primary" >Cancel</button>
+    </div>
+   
+    <script>
+        let data = {
+            "formType": "Add Holding",
+            "account_id": [
+                "-Select-",
+                "A_101",
+                "A_102",
+                "A_103",
+                "A_104",
+                "A_105"
+            ],
+            "security_type": [
+                "-Select-",
+                "S_101",
+                "S_102",
+                "S_103",
+                "S_104",
+                "S_105"
+            ],
+            "identifier": 1011,
+            "security_name": "g4s",
+            "cusip": 122,
+            "ticker": 212121,
+            "share_quantity": 1000,
+            "purchase_date": "04 March 2021",
+            "market_price": 2000,
+            "term": [
+                "short_term",
+                "long_term"
+            ],
+            "total_market_value": 3000,
+            "dont_price": true,
+            "unit_cost_basis": 4000,
+            "total_cost_basis": 5000
+        };
+
+        document.getElementById("formType").innerHTML = data.formType;
+
+        let account_id = `<select class="form-control "  style=" width:230px; height: 40px; color: blue;   font-size: 15px;">`;
+        for (let index = 0; index < data.account_id.length; index++) {
+            account_id += `<option>${data.account_id[index]}</option>`
+        }
+        account_id += `</select>`;
+        document.getElementById("account_id").innerHTML = account_id;
+
+        let security_type = `<select class="form-control my-2">`;
+        for (let index = 0; index < data.security_type.length; index++) {
+            security_type += `<option>${data.security_type[index]}</option>`
+        }
+        security_type += `</select>`;
+        document.getElementById("security_type").innerHTML = security_type;
+
+    </script>
+</body>
+
+</html>

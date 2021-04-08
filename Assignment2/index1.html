@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-2">
+
+            </div>
+
+            <div class="col-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 text-start">
+                            <h2 class="font-weight-light mt-3" id="formHeading"></h2>
+                        </div>
+                        <div class="col-6 text-end">
+                            <select class="form-select form-select-lg mb-3  mt-3" aria-label=".form-select-lg example"
+                                onchange="editHolding()" id="editHolding">
+                                <option value="" selected>Select Option</option>
+                                <option value="1">Add</option>
+                                <option value="2">Edit</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-4">
+
+                        <div class="col-md-5 custom-border border-right">
+
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-6">
+
+                                        <div class="form-group">
+                                            <label for="accountIDLabel"><small>Account ID</small> </label>
+                                            <select class="form-control text-primary" id="formControlAccountID"
+                                                onchange="valueChanged();accountIdSecurityTypeValidation(event)">
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="Identifier">Identifier</label>
+                                    <div class="row">
+                                        <div class="col-4 pr-0">
+
+                                            <input type="text" class="form-control w-100" placeholder="Identifier"
+                                                id="identifier" onchange="valueChanged();"
+                                                onkeyup="IdentifierValidation();">
+
+                                        </div>
+                                        <div class="col-5  pr-0"> <button type="submit"
+                                                class="btn btn-primary mb-2 w-100 disabled" id="retrieveBtn"
+                                                disabled>Retrieve
+                                                Information</button>
+                                        </div>
+                                        <div class="col-3 pl-1 pr-0"><i
+                                                class="far fa-question-circle fa-2x text-primary pt-1"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="securityInfo"></label>
+
+                                            <button type="submit" class="btn btn-outline-primary w-100">Clear Security
+                                                Info</button>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <hr />
+                            <div class=" pt-3">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="sharesQuantity">Shares Quantity</label>
+                                            <input type="text" class="form-control" placeholder="Shares Quantity"
+                                                id="sharesQuantity" onchange="valueChanged()"
+                                                onkeyup="numValidation(event)">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="marketPrice">Market price ($)</label>
+                                            <input type="text" class="form-control" placeholder="Market price"
+                                                id="marketPrice" onchange="valueChanged()"
+                                                onkeyup="marketPriceorTotalValue()">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <p class="text-center mb-0">OR</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="totalMarketValue">Total market value ($)</label>
+                                            <input type="text" class="form-control" id="totalMarketValue"
+                                                placeholder="Principal amount" onchange="valueChanged()"
+                                                onkeyup="marketPriceorTotalValue()">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <div class="custom-control custom-checkbox checkbox-lg pt-4">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-2">
+                                            <label class="custom-control-label" for="checkbox-2">Don't price <i
+                                                    class="far fa-question-circle fa-lg text-primary"></i></label>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-7">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="securityType">Security type</label>
+                                            <select class="form-control" id="securityType"
+                                                onchange="valueChanged(); accountIdSecurityTypeValidation(event)">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for="securityName">Security name</label>
+                                            <input type="text" class="form-control w-100" placeholder="Security name"
+                                                id="securityName" onchange="valueChanged()"
+                                                onkeyup="securityNameValidation()">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-4 pr-0">
+                                        <div class="form-group">
+                                            <label for="CUSIP">CUSIP</label>
+                                            <input type="text" class="form-control w-100" placeholder="CUSIP" id="cusip"
+                                                onchange="valueChanged();" onKeyUp="CUSIPOrTicker()">
+                                        </div>
+                                    </div>
+                                    <div class="col-1 pt-4-5">OR</div>
+                                    <div class="col-4 pl-0">
+                                        <div class="form-group">
+                                            <label for="Ticker">Ticker</label>
+                                            <input type="text" class="form-control w-100" placeholder="Ticker"
+                                                id="ticker" onchange="valueChanged()" onKeyUp="CUSIPOrTicker()">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <hr class="my-hr" />
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="pt-3">
+
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="form-group mb-0">
+                                                    <label for="PurchaseDate">Purchase Date</label>
+                                                    <input placeholder="MM/ DD/ YYYY" type="text" id="PurchaseDate"
+                                                        class="form-control datepicker"
+                                                        onchange="valueChanged();dateOrTerm(event);">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="offset-10">
+                                                OR
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="shortOrLongterm">Short or Long term?</label>
+                                                    <br />
+                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                        <button class="btn btn-outline-primary" id="shortTerm">
+                                                            <!-- <input type="radio" name="options" id="option1" checked> -->
+                                                            Short
+                                                            term
+                                                        </button>
+                                                        <button class="btn btn-outline-primary" id="longTerm">
+                                                            <!-- <input type="radio" name="options" id="option2"> -->
+                                                            Long term
+                                                        </button>
+                                                    </div>
+
+                                                    <i class="far fa-question-circle text-primary fa-lg"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-2 pt-5 pb-4">
+                                    <div class="border h-100 border-left-0">
+                                        <p class="text-muted orSelect">
+                                            At
+                                            least one is required</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div class="form-group mb-0">
+                                                <label for="unitCost">Unit Cost basis ($)</label>
+                                                <input type="text" class="form-control w-100"
+                                                    placeholder="Unit Cost basis" id="unitCost"
+                                                    onchange="valueChanged();" onKeyUp="totalOrUnit();">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="offset-10">
+                                            OR
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div class="form-group mt-0">
+                                                <label for="totalCost">Total cost basis ($)</label>
+                                                <input type="text" class="form-control w-100"
+                                                    placeholder="Total cost basis" id="totalCost"
+                                                    onchange="valueChanged();totalOrUnit();" onKeyUp="totalOrUnit();">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class=" col-2 pt-5 pb-4">
+                                    <div class="border h-100 border-left-0">
+                                        <p class="text-muted orSelect">
+                                            At
+                                            least one is required</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row mt-2 mb-2">
+                    <div class="col-6">
+                        <div class="text-start">
+                            <button type="button" class="btn btn-primary disabled" id="formSaveBtn"
+                                disabled>Save</button>
+                            <button type="button" class="btn btn-primary disabled" id="formSaveAddAddressBtn"
+                                disabled>Save
+                                &
+                                add another</button>
+                            <button type="button" class="btn btn-outline-primary" id="cancel">Cancel</button>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="text-end">
+                            <button type="button" class="btn btn-outline-danger d-none" id="delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script src="./script.js">
+
+    </script>
+</body>
+
+</html>
